@@ -64,7 +64,6 @@
         .circle {
             height: 30px !important;
             width: 30px !important ;
-            margin: 5px;
         }
 
 
@@ -132,29 +131,6 @@
         </div>
         {% for item in list_interzone_access %}
         <div class="row">
-            <!-- Table status devices -->
-<!--            <div class="col-sm-1 mt-5 ">-->
-<!--                <table class="table reduction" >-->
-<!--                    <tr>-->
-<!--                        <th>Device one</th>-->
-<!--                        <th>Device two</th>-->
-<!--                        <th>Device three</th>-->
-<!--                    </tr>-->
-<!--                    {% for element in item.data %}-->
-<!--                    <tr>-->
-<!--                        <td>-->
-<!--                           <span data-title="{{element.table_one.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></span>-->
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <span data-title="{{element.table_two.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></span>-->
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <span data-title="{{element.table_three.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></span>-->
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                    {% endfor %}-->
-<!--                </table>-->
-<!--            </div>-->
 
             <!--   Table one    -->
             <div class="col-sm-3 mt-5">
@@ -163,6 +139,7 @@
                         <th class="bg-extraTwo" >Device one</th>
                         <th class="bg-extraTwo" >Device two</th>
                         <th class="bg-extraTwo" >Device three</th>
+                        <th class="border-invisible" ></th>
                         <th class="bg-acl" > ACL {{item.name}} </th>
                         <th class="bg-fist_cols" > ROUTING ORIGEN </th>
                         <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
@@ -181,15 +158,16 @@
                     </tr>
                     {% for element in item.data %}
                         <tr>
-                             <td>
-                                <span data-title="{{element.table_one.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></span>
+                            <td class="">
+                                <div data-title="{{element.table_one.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></div>
                             </td>
-                            <td>
-                                <span data-title="{{element.table_two.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></span>
+                            <td class="">
+                                <div data-title="{{element.table_two.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
                             </td>
-                            <td>
-                                <span data-title="{{element.table_three.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></span>
+                            <td class="">
+                                <div data-title="{{element.table_three.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
                             </td>
+                            <td class="border-invisible"></td>
                             <td>  {{element.table_one.ACL}} </td>
                             <td> {{element.table_one.origin.ROUTING_ORIGEN}} </td>
                             <td>
@@ -212,8 +190,8 @@
                             <td> {{element.table_one.NAT}} </td>
                             <td> {{element.table_one.NAT_POOL}} </td>
                             <td> {{element.table_one.ROUTING_OK_INTERZONA}} </td>
-                            <td class="d-flex justify-content-center mx-auto h-100 " >
-                                    <span data-title="{{element.table_one.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></span>
+                            <td class="" >
+                                    <div data-title="{{element.table_one.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></div>
                             </td>
                         </tr>
                     {% endfor %}
@@ -258,9 +236,9 @@
                         <td>  {{element.table_two.destiny.TIPO_DE_ROUTING}} </td>
                         <td>  {{element.table_two.destiny.NETWORK_ELEMENT_ROUTING}} </td>
                         <td>  {{element.table_two.ROUTING_OK}} </td>
-                            <td class="d-flex justify-content-center mx-auto h-100 " >
-                                    <span data-title="{{element.table_two.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }} "></span>
-                            </td>
+                        <td class="" >
+                            <div data-title="{{element.table_two.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -302,8 +280,8 @@
                         <td> {{element.table_three.destiny.TIPO_DE_ROUTING}} </td>
                         <td> {{element.table_three.destiny.NETWORK_ELEMENT_ROUTING}} </td>
                         <td> {{element.table_three.ROUTING_OK}} </td>
-                            <td class="d-flex justify-content-center mx-auto h-100 " >
-                                    <span data-title="{{element.table_three.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }} "></span>
+                            <td class="" >
+                                    <div data-title="{{element.table_three.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
                             </td>
                     </tr>
                     {% endfor %}
