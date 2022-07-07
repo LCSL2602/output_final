@@ -133,13 +133,15 @@
         <div class="row">
 
             <!--   Table one    -->
-            <div class="col-sm-3 mt-5">
+            <div class="col-sm-8 mt-5">
                 <table class="table" >
                     <tr>
-                        <th class="bg-extraTwo" >Device one</th>
-                        <th class="bg-extraTwo" >Device two</th>
-                        <th class="bg-extraTwo" >Device three</th>
+                        <th class="bg-extraTwo" > MX-MEX-M1-ISP-E8160E-1 </th>
+                        <th class="bg-extraTwo" > MXTLAM01RTCOREDATA01 </th>
+                        <th class="bg-extraTwo" > MXTLAM01RTCOREISP07 </th>
+                        
                         <th class="border-invisible" ></th>
+
                         <th class="bg-acl" > ACL {{item.name}} </th>
                         <th class="bg-fist_cols" > ROUTING ORIGEN </th>
                         <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
@@ -153,21 +155,56 @@
                         <th class="bg-extraOne" > NAT </th>
                         <th class="bg-extraOne" > NAT POOL </th>
                         <th class="bg-extraTwo" > ROUTING OK INTERZONA </th>
-                        <th class="bg-extraTwo" > STATUS </th>
+                        <th class="bg-extraTwo" >  MX-MEX-M1-ISP-E8160E-1 </th>
+                        
+                        <th class="border-invisible" ></th>
 
+                        <th class="bg-acl" > acl {{item.name}} </th>
+                        <th class="bg-extraOne" > VRF </th>
+                        <th class="bg-fist_cols" > ROUTING ORIGEN </th>
+                        <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
+                        <th class="bg-fist_cols" > TIPO DE ROUTING </th>
+                        <th class="bg-fist_cols" > NETWORK ELEMENT ROUTING </th>
+                        <th class="bg-second_cols"> ROUTING  DESTINO </th>
+                        <th class="bg-second_cols"> INTERFACE DESTINO </th>
+                        <th class="bg-second_cols"> TIPO DE ROUTING </th>
+                        <th class="bg-second_cols"> NETWORK ELEMENT ROUTING </th>
+                        <th class="bg-extraTwo" > ROUTING OK </th>
+                        <th class="bg-extraTwo" > MXTLAM01RTCOREDATA01 </th>
+
+                        <th class="border-invisible" ></th>
+
+                        <th class="bg-acl" > acl {{item.name}} </th>
+                        <th class="bg-fist_cols" > ROUTING ORIGEN </th>
+                        <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
+                        <th class="bg-fist_cols" > TIPO DE ROUTING </th>
+                        <th class="bg-fist_cols" > NETWORK ELEMENT ROUTING </th>
+                        <th class="bg-second_cols"> ROUTING DESTINO </th>
+                        <th class="bg-second_cols"> INTERFACE DESTINO </th>
+                        <th class="bg-second_cols"> TIPO DE ROUTING </th>
+                        <th class="bg-second_cols"> NETWORK ELEMENT ROUTING </th>
+                        <th class="bg-extraTwo" > ROUTING OK </th>
+                        <th class="bg-extraTwo" > MXTLAM01RTCOREISP07 </th>
+
+                        <th class="border-invisible" ></th>
+                        
+                        <th class="bg-extraTwo" > OPERATIIVA A NIVEL ROUTING </th>
                     </tr>
+
                     {% for element in item.data %}
                         <tr>
-                            <td class="">
+                            <td>
                                 <div data-title="{{element.table_one.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></div>
                             </td>
-                            <td class="">
+                            <td>
                                 <div data-title="{{element.table_two.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
                             </td>
-                            <td class="">
+                            <td>
                                 <div data-title="{{element.table_three.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
                             </td>
+
                             <td class="border-invisible"></td>
+                            
                             <td>  {{element.table_one.ACL}} </td>
                             <td> {{element.table_one.origin.ROUTING_ORIGEN}} </td>
                             <td>
@@ -193,110 +230,61 @@
                             <td class="" >
                                     <div data-title="{{element.table_one.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></div>
                             </td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <!--   Table VRF    -->
-            <div class="col-sm-3 mt-5" >
-                <table class="table" >
-                    <tr>
-                        <th class="bg-acl" > acl {{item.name}} </th>
-                        <th class="bg-extraOne" > VRF </th>
-                        <th class="bg-fist_cols" > ROUTING ORIGEN </th>
-                        <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
-                        <th class="bg-fist_cols" > TIPO DE ROUTING </th>
-                        <th class="bg-fist_cols" > NETWORK ELEMENT ROUTING </th>
-                        <th class="bg-second_cols"> ROUTING  DESTINO </th>
-                        <th class="bg-second_cols"> INTERFACE DESTINO </th>
-                        <th class="bg-second_cols"> TIPO DE ROUTING </th>
-                        <th class="bg-second_cols"> NETWORK ELEMENT ROUTING </th>
-                        <th class="bg-extraTwo" > ROUTING OK </th>
-                        <th class="bg-extraTwo" > STATUS </th>
 
-                    </tr>
-                    {% for element in item.data %}
-                    <tr>
-                        <td>  {{element.table_two.ACL}} </td>
-                        <td>  {{element.table_two.VRF}} </td>
-                        <td>  {{element.table_two.origin.ROUTING_ORIGEN}} </td>
-                        <td>
-                            {% for interface in element.table_two.origin.INTERFACE_ORIGEN %}
-                                {{interface}} <br>
-                            {% endfor %}
-                        </td>
-                        <td>  {{element.table_two.origin.TIPO_DE_ROUTING}} </td>
-                        <td>  {{element.table_two.origin.NETWORK_ELEMENT_ROUTING}} </td>
-                        <td>  {{element.table_two.destiny.ROUTING_DESTINO}} </td>
-                        <td>
-                            {% for interface in element.table_two.destiny.INTERFACE_DESTINO %}
-                                {{interface}} <br>
-                            {% endfor %}
-                        </td>
-                        <td>  {{element.table_two.destiny.TIPO_DE_ROUTING}} </td>
-                        <td>  {{element.table_two.destiny.NETWORK_ELEMENT_ROUTING}} </td>
-                        <td>  {{element.table_two.ROUTING_OK}} </td>
-                        <td class="" >
-                            <div data-title="{{element.table_two.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <!--   Table three  -->
-            <div class="col-sm-3 mt-5">
-                <table class="table" >
-                   <tr>
-                       <th class="bg-acl" > acl {{item.name}} </th>
-                       <th class="bg-fist_cols" > ROUTING ORIGEN </th>
-                       <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
-                       <th class="bg-fist_cols" > TIPO DE ROUTING </th>
-                       <th class="bg-fist_cols" > NETWORK ELEMENT ROUTING </th>
-                       <th class="bg-second_cols"> ROUTING DESTINO </th>
-                       <th class="bg-second_cols"> INTERFACE DESTINO </th>
-                       <th class="bg-second_cols"> TIPO DE ROUTING </th>
-                       <th class="bg-second_cols"> NETWORK ELEMENT ROUTING </th>
-                       <th class="bg-extraTwo" > ROUTING OK </th>
-                       <th class="bg-extraTwo" > STATUS </th>
+                            <td class="border-invisible"></td>
 
-                   </tr>
-                   {% for element in item.data %}
-                    <tr>
-                        <td> {{element.table_three.ACL}} </td>
-                        <td> {{element.table_three.origin.ROUTING_ORIGEN}} </td>
-                        <td>
-                            {% for interface in element.table_three.origin.INTERFACE_ORIGEN %}
-                                {{interface}} <br>
-                            {% endfor %}
-                        </td>
-                        <td> {{element.table_three.origin.TIPO_DE_ROUTING}} </td>
-                        <td> {{element.table_three.origin.NETWORK_ELEMENT_ROUTING}} </td>
-                        <td> {{element.table_three.destiny.ROUTING_DESTINO}} </td>
-                        <td>
-                            {% for interface in element.table_three.destiny.INTERFACE_DESTINO %}
-                                {{interface}} <br>
-                            {% endfor %}
-                        </td>
-                        <td> {{element.table_three.destiny.TIPO_DE_ROUTING}} </td>
-                        <td> {{element.table_three.destiny.NETWORK_ELEMENT_ROUTING}} </td>
-                        <td> {{element.table_three.ROUTING_OK}} </td>
-                            <td class="" >
-                                    <div data-title="{{element.table_three.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
+                            <td>  {{element.table_two.ACL}} </td>
+                            <td>  {{element.table_two.VRF}} </td>
+                            <td>  {{element.table_two.origin.ROUTING_ORIGEN}} </td>
+                            <td>
+                                {% for interface in element.table_two.origin.INTERFACE_ORIGEN %}
+                                    {{interface}} <br>
+                                {% endfor %}
                             </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <!--  Table operative  -->
-            <div class="col-sm-1 mt-5 ">
-                <table class="table reduction ">
-                    <tr>
-                        <th class="bg-extraTwo" > OPERATIIVA A NIVEL ROUTING </th>
-                    </tr>
-                    {% for element in item.data %}
-                    <tr>
-                        <td> {{element.OPERATIIVA_A_NIVEL_ROUTING}} </td>
-                    </tr>
+                            <td>  {{element.table_two.origin.TIPO_DE_ROUTING}} </td>
+                            <td>  {{element.table_two.origin.NETWORK_ELEMENT_ROUTING}} </td>
+                            <td>  {{element.table_two.destiny.ROUTING_DESTINO}} </td>
+                            <td>
+                                {% for interface in element.table_two.destiny.INTERFACE_DESTINO %}
+                                    {{interface}} <br>
+                                {% endfor %}
+                            </td>
+                            <td>  {{element.table_two.destiny.TIPO_DE_ROUTING}} </td>
+                            <td>  {{element.table_two.destiny.NETWORK_ELEMENT_ROUTING}} </td>
+                            <td>  {{element.table_two.ROUTING_OK}} </td>
+                            <td class="" >
+                                <div data-title="{{element.table_two.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
+                            </td>
+                            
+                            <td class="border-invisible"></td>
+
+                            <td> {{element.table_three.ACL}} </td>
+                            <td> {{element.table_three.origin.ROUTING_ORIGEN}} </td>
+                            <td>
+                                {% for interface in element.table_three.origin.INTERFACE_ORIGEN %}
+                                    {{interface}} <br>
+                                {% endfor %}
+                            </td>
+                            <td> {{element.table_three.origin.TIPO_DE_ROUTING}} </td>
+                            <td> {{element.table_three.origin.NETWORK_ELEMENT_ROUTING}} </td>
+                            <td> {{element.table_three.destiny.ROUTING_DESTINO}} </td>
+                            <td>
+                                {% for interface in element.table_three.destiny.INTERFACE_DESTINO %}
+                                    {{interface}} <br>
+                                {% endfor %}
+                            </td>
+                            <td> {{element.table_three.destiny.TIPO_DE_ROUTING}} </td>
+                            <td> {{element.table_three.destiny.NETWORK_ELEMENT_ROUTING}} </td>
+                            <td> {{element.table_three.ROUTING_OK}} </td>
+                            <td class="" >
+                                <div data-title="{{element.table_three.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
+                            </td>
+                            
+                            <td class="border-invisible"></td>
+                            
+                            <td> {{element.OPERATIIVA_A_NIVEL_ROUTING}} </td>
+                                
+                        </tr>
                     {% endfor %}
                 </table>
             </div>
