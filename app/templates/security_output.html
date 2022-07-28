@@ -66,34 +66,16 @@
             width: 30px !important ;
         }
 
+        .max-width-200{
+            width: 200px !important;
+            max-width: 200px !important;
+        }
 
-    [data-title]:hover:after {
-        opacity: 1;
-        transition: all 0.1s ease 0.5s;
-        visibility: visible;
-    }
-    [data-title]:after {
-        content: attr(data-title);
-        background-color: #333;
-        color: #fff;
-        font-size: 14px;
-        font-family: Raleway;
-        position: absolute;
-        padding: 3px 20px;
-        bottom: -1.6em;
-        left: 100%;
-        white-space: nowrap;
-        box-shadow: 1px 1px 3px #222222;
-        opacity: 0;
-        border: 1px solid #111111;
-        z-index: 99999;
-        visibility: hidden;
-        border-radius: 6px;
-    }
-    [data-title] {
-        position: relative;
-    }
-        
+        .max-width-600{
+            width: 1000px !important;
+            max-width: 1000px !important;
+        }
+
     </style>
 
     <div class="container-fluid">
@@ -133,16 +115,16 @@
         <div class="row">
 
             <!--   Table one    -->
-            <div class="col-sm-8 mt-5">
+            <div class="col-sm-10 mt-5">
                 <table class="table" >
                     <tr>
-                        <th class="bg-extraTwo" > MX-MEX-M1-ISP-E8160E-1 </th>
-                        <th class="bg-extraTwo" > MXTLAM01RTCOREDATA01 </th>
-                        <th class="bg-extraTwo" > MXTLAM01RTCOREISP07 </th>
+                        <th class="bg-extraTwo max-width-200 " > MX-MEX-M1-ISP-E8160E-1 </th>
+                        <th class="bg-extraTwo max-width-200 " > MXTLAM01RTCOREDATA01 </th>
+                        <th class="bg-extraTwo max-width-200 " > MXTLAM01RTCOREISP07 </th>
                         
                         <th class="border-invisible" ></th>
 
-                        <th class="bg-acl" > ACL {{item.name}} </th>
+                        <th class="bg-acl max-width-600 " > ACL {{item.name}} </th>
                         <th class="bg-fist_cols" > ROUTING ORIGEN </th>
                         <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
                         <th class="bg-fist_cols" > TIPO DE ROUTING </th>
@@ -155,11 +137,11 @@
                         <th class="bg-extraOne" > NAT </th>
                         <th class="bg-extraOne" > NAT POOL </th>
                         <th class="bg-extraTwo" > ROUTING OK INTERZONA </th>
-                        <th class="bg-extraTwo" >  MX-MEX-M1-ISP-E8160E-1 </th>
+                        <th class="bg-extraTwo max-width-200 " >  MX-MEX-M1-ISP-E8160E-1 </th>
                         
                         <th class="border-invisible" ></th>
 
-                        <th class="bg-acl" > acl {{item.name}} </th>
+                        <th class="bg-acl max-width-600" > acl {{item.name}} </th>
                         <th class="bg-extraOne" > VRF </th>
                         <th class="bg-fist_cols" > ROUTING ORIGEN </th>
                         <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
@@ -170,11 +152,11 @@
                         <th class="bg-second_cols"> TIPO DE ROUTING </th>
                         <th class="bg-second_cols"> NETWORK ELEMENT ROUTING </th>
                         <th class="bg-extraTwo" > ROUTING OK </th>
-                        <th class="bg-extraTwo" > MXTLAM01RTCOREDATA01 </th>
+                        <th class="bg-extraTwo max-width-200 " > MXTLAM01RTCOREDATA01 </th>
 
                         <th class="border-invisible" ></th>
 
-                        <th class="bg-acl" > acl {{item.name}} </th>
+                        <th class="bg-acl max-width-600" > acl {{item.name}} </th>
                         <th class="bg-fist_cols" > ROUTING ORIGEN </th>
                         <th class="bg-fist_cols" > INTERFACE ORIGEN </th>
                         <th class="bg-fist_cols" > TIPO DE ROUTING </th>
@@ -183,24 +165,27 @@
                         <th class="bg-second_cols"> INTERFACE DESTINO </th>
                         <th class="bg-second_cols"> TIPO DE ROUTING </th>
                         <th class="bg-second_cols"> NETWORK ELEMENT ROUTING </th>
+                        <th>IP NAT</th>
+                        <th>ROUTING NAT </th>
+                        <th>INTERFACE NAT</th>
                         <th class="bg-extraTwo" > ROUTING OK </th>
-                        <th class="bg-extraTwo" > MXTLAM01RTCOREISP07 </th>
+                        <th class="bg-extraTwo max-width-200 " > MXTLAM01RTCOREISP07 </th>
 
                         <th class="border-invisible" ></th>
                         
-                        <th class="bg-extraTwo" > OPERATIIVA A NIVEL ROUTING </th>
+                        <th class="bg-extraTwo max-width-200" > OPERATIIVA A NIVEL ROUTING </th>
                     </tr>
 
                     {% for element in item.data %}
                         <tr>
-                            <td>
-                                <div data-title="{{element.table_one.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></div>
+                            <td class="max-width-200">
+                                <div data-title="{{element.table_one.device}}" class="rounded-circle m-0 border border-3 circle {{ 'bg-success' if element.table_one.ROUTING_OK_INTERZONA == 'SI' else 'bg-danger' }} "></div>
                             </td>
-                            <td>
-                                <div data-title="{{element.table_two.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
+                            <td class="max-width-200">
+                                <div data-title="{{element.table_two.device}}" class="rounded-circle m-0 border border-3 circle {{ 'bg-success' if element.table_two.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
                             </td>
-                            <td>
-                                <div data-title="{{element.table_three.device}}" class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
+                            <td class="max-width-200">
+                                <div data-title="{{element.table_three.device}}" class="rounded-circle m-0 border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }}  " ></div>
                             </td>
 
                             <td class="border-invisible"></td>
@@ -275,6 +260,9 @@
                             </td>
                             <td> {{element.table_three.destiny.TIPO_DE_ROUTING}} </td>
                             <td> {{element.table_three.destiny.NETWORK_ELEMENT_ROUTING}} </td>
+                            <td> {{element.table_three.IP_NAT}} </td>
+                            <td> {{element.table_three.ROUTING_NAT}} </td>
+                            <td> {{element.table_three.INTERFACE_NAT}} </td>
                             <td> {{element.table_three.ROUTING_OK}} </td>
                             <td class="" >
                                 <div data-title="{{element.table_three.device}}"  class="rounded-circle border border-3 circle {{ 'bg-success' if element.table_three.ROUTING_OK == 'SI' else 'bg-danger' }} "></div>
@@ -282,7 +270,9 @@
                             
                             <td class="border-invisible"></td>
                             
-                            <td> {{element.OPERATIIVA_A_NIVEL_ROUTING}} </td>
+                            <td>
+                                 <div class="rounded-circle border border-3 circle {{ 'bg-success' if element.OPERATIIVA_A_NIVEL_ROUTING == 'SI' else 'bg-danger' }}  " ></div>
+                            </td>
                                 
                         </tr>
                     {% endfor %}
