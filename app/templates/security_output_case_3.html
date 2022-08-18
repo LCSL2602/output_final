@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security_output_case_3</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        body{
+            font-size: 16px !important;
+            width: 900vw;
+            padding:20px;
+        }
+
+        td, th {
+            display: flexbox !important;
+            border: 1px solid black !important;
+        }
+
+        li {
+            display: flexbox !important;
+            width: 40% !important;
+        }
+
+        p{
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .border-invisible{
+            border: 0px !important;
+        }
+
+        .bg-first_cols{
+            background-color: rgb(116, 165, 240) !important ;
+        }
+
+        .bg-second_cols{
+            background-color: rgb(216, 154, 38) !important ;
+        }
+
+        .bg-third_cols{
+            background-color: rgb(218, 218, 126) !important ;
+        }
+
+        .static-list{
+            position: fixed;
+        }
+    </style>
+    <div class="cointainer-fluid">
+        <div class="row">
+            <div class="col-sm-1 mt-5">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-first_cols text-center mt-1"> MX-MEX-M1-ISP-ASA5545-1 </li>
+                    <li class="list-group-item bg-second_cols text-center mt-1"> FW  ISP EUDEMON 1 y 2 </li>
+                    <li class="list-group-item bg-third_cols text-center mt-1"> MXTLAM01RTCOREDATA01 y 02 </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-sm-10">
+                <table class="table" >
+                    <tr>
+                        <!-- First table -->
+                        <th class="bg-first_cols"> NAME </th>
+                        <th class="bg-first_cols"> LOCAL PEER </th>
+                        <th class="bg-first_cols"> REMOTE PEER </th>
+                        <th class="bg-first_cols"> NUMBER VPN </th>
+                        <th class="bg-first_cols"> CONFIG ASA CRYPTO / TUNNEL / GROUP-POLICY </th>
+                        <th class="bg-first_cols"> CONFIG ASA ACL TRAFICO INTERESANTE </th>
+                        <th class="bg-first_cols"> CONFIG ASA ACL FILTRO VPN </th>
+                        <th class="bg-first_cols"> ROUTING </th>
+
+                        <th class="border-invisible"></th>
+                        <!-- Second Table -->
+                        <th class="bg-second_cols" > NAT  EUDEMON </th>
+                        <th class="bg-second_cols" > ROUTING  ORIGEN ATT DE VPN </th>
+                        <th class="bg-second_cols" > ROUTING  PROVEEDOR REMOTO DE VPN </th>
+                        <th class="bg-second_cols" > INTERFACE ZONE </th>
+                        <th class="bg-second_cols" > INTERZONE </th>
+                        <th class="bg-second_cols" > PACKET-FILTER INTERZONE </th>
+                        <th class="bg-second_cols" > ACL </th>
+                        <th class="bg-second_cols" > VRF DATA </th>
+
+                        <th class="border-invisible" ></th>
+                        <!--Third Table-->
+                        <th class="bg-third_cols" > VRF DATA </th>
+                        <th class="bg-third_cols" > ROUTIING DATA ORIGEN ATT DE VPN </th>
+                        <th class="bg-third_cols" > ROUTIING DATA DESTINO PROVEEDOR DE VPN </th>
+                        <th class="bg-third_cols" > INTERFACE DATA ORIGEN </th>
+                        <th class="bg-third_cols" > INTERFACE DATA DESTINO </th>
+                    </tr>
+                    <tr>
+                        <td> {{data.first_col.name}} </td>
+                        <td> {{data.first_col.local_peer}} </td>
+                        <td> {{data.first_col.remote_peer}} </td>
+                        <td> {{data.first_col.number_vpn}} </td>
+                        <td>
+                            {% for item in data.first_col.config_asa_crypto_tunnel_group_policy %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.first_col.config_asa_acl_traffic %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.first_col.config_asa_acl_filter %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %} 
+                        </td>
+                        <td>
+                            {% for item in data.first_col.router %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td class="border-invisible" ></td>
+
+                        <td>
+                            {% for item in data.second_col.nat_eudemon %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.routing_origin_vpn %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.routing_provider_remote_vpn %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.interface_zone %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <hr>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.interzone %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.package_filter_interzone %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.acl %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <hr>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.second_col.vrf_data %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td class="border-invisible"></td>
+
+                        <td>
+                            {% for item in data.third_col.vrf_data %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <hr>    
+                            {% endfor %}    
+                        </td>
+                        <td>
+                            {% for item in data.third_col.routing_data_origin_VPN %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.third_col.routing_data_destiny_provider %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.third_col.interface_data_origin %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in data.third_col.interface_data_destiny %}
+                            <p>
+                                {% for line in item %}
+                                <p>
+                                    {{line}}
+                                </p>
+                                {% endfor %}
+                            </p>
+                            <br>    
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

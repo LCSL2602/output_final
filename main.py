@@ -24,15 +24,16 @@ list_zone_destiny = [
     }
 ]
 
-file = open('base.json')
+file = open('base_thirdCase.json')
 data = json.load(file)
 
 
 @app.route("/")
 def index():
-    return render_template('security_output.html',
-                           title=TITLE_INTERZONE,
-                           time=time.strftime('%A %B, %d %Y %H:%M:%S'),
-                           list_zone_origin=list_zone_origin,
-                           list_zone_destiny=list_zone_destiny,
-                           list_interzone_access=data['data'])
+    return render_template('security_output_case_3.html', data=data)
+    # return render_template('security_output.html',
+    #                        title=TITLE_INTERZONE,
+    #                        time=time.strftime('%A %B, %d %Y %H:%M:%S'),
+    #                        list_zone_origin=list_zone_origin,
+    #                        list_zone_destiny=list_zone_destiny,
+    #                        list_interzone_access=data['data'])

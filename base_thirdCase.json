@@ -1,0 +1,199 @@
+{
+    "first_col":{
+        "name": "Nextel Compatel",
+        "local_peer": "201.175.130.28",
+        "remote_peer": "77.92.100.98",
+        "number_vpn": "16",
+        "config_asa_crypto_tunnel_group_policy": [
+            [
+                "crypto map outside-map 16 match address vpn_nextel_compatel",
+                "crypto map outside-map 16 set peer 77.92.100.98",
+                "crypto map outside-map 16 set ikev1 transform-set AES128_SHA",
+                "crypto map outside-map 16 set security-association lifetime seconds 28800",
+                "crypto map outside-map 16 set nat-t-disable",
+                "tunnel-group 77.92.100.98 type ipsec-l2l",
+                "tunnel-group 77.92.100.98 ipsec-attributes",
+                "ikev1 pre-shared-key *****"
+            ]
+        ],
+        "config_asa_acl_traffic": [
+            [
+                "object-group network lan_nextel_compatel",
+                "network-object host 172.27.170.130",
+                "network-object host 172.27.105.196",
+                "network-object host 201.175.130.92",
+                "object-group network lan_compatel",
+                "network-object host 77.92.100.104",
+                "access-list vpn_nextel_compatel extended permit ip object-group lan_nextel_compatel object-group lan_compatel"
+            ]
+        ],
+        "config_asa_acl_filter": [
+            [
+                "N/A"
+            ]
+        ],
+        "router": [
+            [
+                "sh route 77.92.100.104",
+                "Routing entry for 77.92.100.104 255.255.255.255",
+                "Known via \"static\", distance 1, metric 0",
+                "Redistributing via ospf 113",
+                "Advertised by ospf 113 subnets route-map TO_INSIDE",
+                "Routing Descriptor Blocks:",
+                "* 201.175.130.25, via outside",
+                "Route metric is 0, traffic share count is 1"
+            ],
+            [
+                "sh route 77.92.100.104",
+                "Routing entry for 77.92.100.104 255.255.255.255",
+                "Known via \"static\", distance 1, metric 0",
+                "Redistributing via ospf 113",
+                "Advertised by ospf 113 subnets route-map TO_INSIDE",
+                "Routing Descriptor Blocks:",
+                "* 201.175.130.25, via outside",
+                "Route metric is 0, traffic share count is 1"
+            ],
+            [
+                "sh route 77.92.100.104",
+                "Routing entry for 77.92.100.104 255.255.255.255",
+                "Known via \"static\", distance 1, metric 0",
+                "Redistributing via ospf 113",
+                "Advertised by ospf 113 subnets route-map TO_INSIDE",
+                "Routing Descriptor Blocks:",
+                "* 201.175.130.25, via outside",
+                "Route metric is 0, traffic share count is 1"
+            ]
+        ]
+    },
+    "second_col": {
+        "nat_eudemon": [
+            [
+                "N/A NAT"
+            ]
+        ],
+        "routing_origin_vpn": [
+            [
+                "Destination/Mask    Proto  Pre  Cost       Flags NextHop         Interface",
+                "172.27.105.196/32  Static 60   0           RD   10.33.80.133    Eth-Trunk17.13"
+            ],
+            [
+                "Destination/Mask    Proto  Pre  Cost       Flags NextHop         Interface",
+                "172.27.105.192/27  O_ASE  150  129          D   10.33.80.133    Eth-Trunk17.13"
+            ],
+            [
+                "Destination/Mask    Proto  Pre  Cost       Flags NextHop         Interface",
+                "172.27.105.192/27  O_ASE  150  129          D   10.33.80.133    Eth-Trunk17.13"
+            ]
+        ],
+        "routing_provider_remote_vpn": [
+            [
+                "Destination/Mask    Proto  Pre  Cost       Flags NextHop         Interface",
+                "172.20.20.237/32  O_ASE  150  20           D   10.33.81.228    GigabitEthernet1/1/2.401"
+            ]
+        ],
+        "interface_zone": [
+            [
+                "o&m_safe",
+                "priority is 99",
+                " interface of the zone is (2):",
+                "Eth-Trunk17.13",
+                " GigabitEthernet1/1/2.427"
+            ],
+            [
+                "svn",
+                "priority is 32",
+                "interface of the zone is (2):",
+                "GigabitEthernet1/1/2.400",
+                "GigabitEthernet1/1/2.401"
+            ]
+        ],
+        "interzone": [
+            [
+                "interzone o&m_safe svn",
+                "packet-filter 3050 inbound",
+                "packet-filter 3065 outbound",
+                " nat outbound 3094 address-group 10"
+            ]
+        ],
+        "package_filter_interzone": [
+            [
+                "o&m_safe -> svn :",
+                "   inbound : default: deny || policy-acl: 3050, policy-acl6: null;",
+                "   outbound: default: deny || policy-acl: 3065, policy-acl6: null;"
+            ]
+        ],
+        "acl": [
+            [
+                "ACL 3050  rule 7435 permit tcp source 172.20.20.237 0 destination 172.27.105.196 0 destination-port eq 6201 (8 times matched)",
+                "ACL 3050  rule 7436 permit icmp source 172.20.20.237 0 destination 172.27.105.196 0 (10 times matched)"
+            ],
+            [
+                "ACL 3065  rule 6255 permit tcp source 172.27.105.204 0.0.0.1 destination 172.20.20.237 0 destination-port eq 2775 (0 times matched)",
+                "ACL 3065  rule 6256 permit icmp source 172.27.105.204 0.0.0.1 destination 172.20.20.237 0 (0 times matched)"
+            ]
+        ],
+        "vrf_data": [
+            [
+                "Eth-Trunk17.13",
+                "Nextel_O&M"
+            ]
+        ]
+    },
+    "third_col": {
+        "vrf_data": [
+            [
+                "Nextel_O&M"
+            ]
+        ],
+        "routing_data_origin_VPN": [
+            [
+                "vpn-instance Nextel_O&M 172.27.105.196",
+                "Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface",
+                " 172.27.105.192/27  EBGP    255  20         RD   10.33.89.162    Eth-Trunk19.1320"
+            ],
+            [
+                "vpn-instance Nextel_O&M 172.27.105.204",
+                "Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface",
+                " 172.27.105.192/27  EBGP    255  20         RD   10.33.89.162    Eth-Trunk19.1320"
+            ],
+            [
+                " vpn-instance Nextel_O&M 172.27.105.205",
+                "Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface",
+                " 172.27.105.192/27  EBGP    255  20         RD   10.33.89.162    Eth-Trunk19.1320"
+            ]
+        ],
+        "routing_data_destiny_provider": [
+            [
+                "vpn-instance Nextel_O&M 172.20.20.237",
+                "Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface",
+                "  172.20.20.237/32  O_ASE   150  801         D   10.33.80.26     Eth-Trunk2.13"
+            ]
+        ],
+        "interface_data_origin": [
+            [
+                "interface Eth-Trunk19.1320",
+                "vlan-type dot1q 1320",
+                "description To-MXTLAM01RTDCLFIPS01-Bundle-Ethernet-1.1320-2G-To-O&M",
+                "ip binding vpn-instance Nextel_O&M",
+                "ip address 10.33.89.161 255.255.255.252",
+                "traffic-policy E2E_QOS_CS1 inbound",
+                "statistic enable"
+            ]
+        ],
+        "interface_data_destiny": [
+            [
+                "interface Eth-Trunk2.13",
+                " vlan-type dot1q 13",
+                " description To-O&M-MXTLAM01RTCOREDATA02-Eth-trunk-2.13",
+                " ip binding vpn-instance Nextel_O&M",
+                " ip address 10.33.80.25 255.255.255.252",
+                " ospf cost 300",
+                " ospf network-type p2p",
+                " trust upstream default",
+                " qos phb disable",
+                " statistic enable"
+            ]
+        ]
+    }
+
+}

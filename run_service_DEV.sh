@@ -3,9 +3,10 @@
 # shellcheck disable=SC2164
 cd "C:\Users\Luis Sulbaran\PycharmProjects\output_final"
 
-pip install -r requirements.txt
 
 source venv/Scripts/activate
+
+pip install -r requirements.txt
 
 export FLASK_APP=main.py
 export FLASK_DEBUG=1
